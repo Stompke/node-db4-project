@@ -35,5 +35,13 @@ router.get('/:id/instructions', (req, res) => {
         })
 })
 
-
+router.post('/', (req, res) => {
+    Recipes.addRecipe(req.body)
+        .then(recipe => {
+            res.status(201).json(recipe);
+        })
+        .catch(err => {
+            res.status(500).json({ error: "could not add recipe" });
+        })
+})
 module.exports = router;

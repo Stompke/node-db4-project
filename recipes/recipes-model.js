@@ -3,7 +3,8 @@ const db = require('../data/db-config');
 module.exports = {
     find,
     getShoppingList,
-    getInstructions
+    getInstructions,
+    addRecipe
 }
 
 function find() {
@@ -24,4 +25,9 @@ function getInstructions(recipe_id) {
         .select('r.name','i.step_number','i.description')
         .where({ recipe_id })
         .orderBy('i.step_number')
+}
+
+function addRecipe(recipe){
+    return db('recipes')
+        .insert(recipe)
 }
