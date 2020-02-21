@@ -1,9 +1,6 @@
 
-exports.seed = function(knex) {
+exports.seed = function(knex, promise) {
   // Deletes ALL existing entries
-  return knex('ingredients').del()
-    .then(function () {
-      // Inserts seed entries
       return knex('ingredients').insert([
         {id: 1, ingredient: 'Turkey', measurement: 'lbs'},
         {id: 2, ingredient: 'Broth', measurement: 'cups'},
@@ -12,5 +9,4 @@ exports.seed = function(knex) {
         {id: 5, ingredient: 'Hamburger', measurement: 'lbs'},
         {id: 6, ingredient: 'Hamburger Buns', measurement: 'pieces'}
       ]);
-    });
 };
