@@ -55,5 +55,15 @@ router.post('/ingredients', (req, res) => {
         })
 })
 
+router.post('/:id/ingredients', (req, res) => {
+    Recipes.addIngredientsToRecipe(req.params.id, req.body)
+        .then(ingredient => {
+            res.status(201).json(ingredient);
+        })
+        .catch(err => {
+            res.status(500).json({ error: "There was an error adding ingredient to recipe" });
+        })
+})
+
 
 module.exports = router;

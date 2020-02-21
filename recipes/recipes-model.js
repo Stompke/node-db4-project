@@ -5,7 +5,8 @@ module.exports = {
     getShoppingList,
     getInstructions,
     addRecipe,
-    addIngredient
+    addIngredient,
+    addIngredientsToRecipe
 }
 
 function find() {
@@ -15,7 +16,7 @@ function find() {
 function getShoppingList(id) {
     return db('ingredients_list as l')
     .join("ingredients as i", "l.ingredient_id", "i.id")
-    .select("i.ingredient","l.quantity", "i.measurement")
+    .select("i.ingredient","l.quantity", "l.measurement")
     .where({ recipe_id: id })
 }
 
@@ -36,4 +37,9 @@ function addRecipe(recipe){
 function addIngredient(ingredient){
     return db('ingredients')
         .insert(ingredient)
+}
+
+function addIngredientsToRecipe(id, ingredients){
+    return db('ingredients_list')
+        .insert({recipe_id:id, ...ingredients})
 }
