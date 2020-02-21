@@ -23,5 +23,17 @@ router.get('/:id/shoppingList', (req, res) => {
             res.status(500).json({ error: "There was an error retreiving the shopping list" });
         })
     });
-    
+
+router.get('/:id/instructions', (req, res) => {
+
+    Recipes.getInstructions(req.params.id)
+        .then(instructions => {
+            res.status(200).json(instructions);
+        })
+        .catch(err => {
+            res.status(500).json({ error: "there was an error getting instructions for that recipe" });
+        })
+})
+
+
 module.exports = router;

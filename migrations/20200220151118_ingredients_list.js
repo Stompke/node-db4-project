@@ -10,7 +10,7 @@ exports.up = function(knex) {
             .notNullable()
             .references('id')
             .inTable('recipes')
-            .onDelete('RESTRICT')
+            .onDelete('CASCADE')
             .onUpdate('CASCADE')
 
       //foreign key
@@ -19,11 +19,11 @@ exports.up = function(knex) {
             .notNullable()
             .references('id')
             .inTable('ingredients')
-            .onDelete('RESTRICT')
+            .onDelete('CASCADE')
             .onUpdate('CASCADE')
 
         tbl.integer('quantity')
-            .notNullable();
+            .notNullable()
 
 
   })
