@@ -4,7 +4,8 @@ module.exports = {
     find,
     getShoppingList,
     getInstructions,
-    addRecipe
+    addRecipe,
+    addIngredient
 }
 
 function find() {
@@ -30,4 +31,9 @@ function getInstructions(recipe_id) {
 function addRecipe(recipe){
     return db('recipes')
         .insert(recipe)
+}
+
+function addIngredient(ingredient){
+    return db('ingredients')
+        .insert(ingredient)
 }
